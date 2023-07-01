@@ -1,21 +1,84 @@
 <template>
-  <q-layout view="hHh lpR fFf">
+  <q-layout view="lHh lpr lFf" uhyhjuycfgv>
 
-    <q-header elevated class="bg-primary text-white" height-hint="98">
-      <q-toolbar>
-        <q-toolbar-title>
-          <q-avatar>
-            <img src="https://cdn.quasar.dev/logo-v2/svg/logo-mono-white.svg">
-          </q-avatar>
-          Title
-        </q-toolbar-title>
-      </q-toolbar>
+    <q-header elevated class="bg-blue-grey-10  header-text" height-hint="98">
+      <router-link to="/" >
+          <q-toolbar>
+            <q-toolbar-title class="toolbar-title">
+              <q-avatar>
+                <img class="white-img" src="../images/panini-logo.png" alt="logo"/>
+              </q-avatar>
+              <div class="logo-text">
+                Panini by Illia
+              </div>
+            </q-toolbar-title>
+          </q-toolbar>
+      </router-link>
 
-      <q-tabs align="left">
-        <q-route-tab to="/page1" label="Page One" />
-        <q-route-tab to="/page2" label="Page Two" />
-        <q-route-tab to="/page3" label="Page Three" />
-      </q-tabs>
+      <div class="tools">
+        <q-tabs align="left">
+          <q-route-tab to="/" label="Intro" />
+          <q-route-tab to="/" label="CV" />
+
+          <div class="no-border-radius">
+          <q-btn text-color="white" label="Articles" style="margin: 0 5px">
+            <q-menu
+              transition-show="rotate"
+              transition-hide="rotate"
+              >
+              <q-list>
+                <q-item clickable>
+                  <q-item-section>Java</q-item-section>
+                </q-item>
+                <q-item clickable>
+                  <q-item-section>Spring Boot</q-item-section>
+                </q-item>
+                <q-item clickable>
+                  <q-item-section>AWS</q-item-section>
+                </q-item>
+                <q-separator/>
+                <q-item clickable>
+                  <q-item-section>Computer Science</q-item-section>
+                </q-item>
+              </q-list>
+            </q-menu>
+          </q-btn>
+          <q-btn  text-color="white" label="Admin Tools" >
+            <q-menu
+              transition-show="rotate"
+              transition-hide="rotate"
+            >
+              <q-list>
+                <q-item clickable>
+                  <q-item-section>Item 1</q-item-section>
+                </q-item>
+                <q-item clickable>
+                  <q-item-section>Item 2</q-item-section>
+                </q-item>
+                <q-item clickable>
+                  <q-item-section>Item 3</q-item-section>
+                </q-item>
+                <q-separator/>
+                <q-item clickable>
+                  <q-item-section>Item 4</q-item-section>
+                </q-item>
+              </q-list>
+            </q-menu>
+          </q-btn>
+          </div>
+          <q-route-tab to="/" label="Page Three" />
+          <q-route-tab to="/" label="Page Three" />
+        </q-tabs>
+
+        <div class="loggin-btn">
+          <my-button
+            v-for="button in logButtons"
+            :button="button"
+          />
+        </div>
+
+      </div>
+
     </q-header>
 
     <q-page-container>
@@ -27,70 +90,89 @@
 
 <script lang="ts">
 import { defineComponent, ref } from 'vue';
-import EssentialLink from 'components/EssentialLink.vue';
+import MyButton from 'src/components/MyButton.vue';
+import { CustomButton } from 'src/models/CustomButton';
 
-const linksList = [
-  {
-    title: 'Docs',
-    caption: 'quasar.dev',
-    icon: 'school',
-    link: 'https://quasar.dev'
-  },
-  {
-    title: 'Github',
-    caption: 'github.com/quasarframework',
-    icon: 'code',
-    link: 'https://github.com/quasarframework'
-  },
-  {
-    title: 'Discord Chat Channel',
-    caption: 'chat.quasar.dev',
-    icon: 'chat',
-    link: 'https://chat.quasar.dev'
-  },
-  {
-    title: 'Forum',
-    caption: 'forum.quasar.dev',
-    icon: 'record_voice_over',
-    link: 'https://forum.quasar.dev'
-  },
-  {
-    title: 'Twitter',
-    caption: '@quasarframework',
-    icon: 'rss_feed',
-    link: 'https://twitter.quasar.dev'
-  },
-  {
-    title: 'Facebook',
-    caption: '@QuasarFramework',
-    icon: 'public',
-    link: 'https://facebook.quasar.dev'
-  },
-  {
-    title: 'Quasar Awesome',
-    caption: 'Community Quasar projects',
-    icon: 'favorite',
-    link: 'https://awesome.quasar.dev'
-  }
-];
+function getRandomNumber(): number {
+  return Math.floor(10001 * Math.random());
+}
+
+
 
 export default defineComponent({
-  name: 'MainLayout',
 
+  name: 'MainLayout',
   components: {
-    EssentialLink
+    MyButton,
   },
 
   setup () {
-    const leftDrawerOpen = ref(false)
-
-    return {
-      essentialLinks: linksList,
-      leftDrawerOpen,
-      toggleLeftDrawer () {
-        leftDrawerOpen.value = !leftDrawerOpen.value
+    const color = 'blue-grey-7';
+    const logginButtons: CustomButton[] = [
+      {
+        id: getRandomNumber(),
+        label: 'Sing in',
+        color: color,
+        name: 'singin',
+        route: '/singin'
+      },
+      {
+        id: getRandomNumber(),
+        label: 'Logout',
+        name: 'logout',
+        color: color,
+        route: '/logout'
       }
-    }
+    ];
+
+    const logButtons = ref<CustomButton[]>(logginButtons);
+    return { logButtons };
   }
+
 });
 </script>
+
+<style scoped>
+ .borderless-button {
+   border: none !important;
+   background: none !important;
+ }
+
+ .header-text {
+   color: white;
+   font-size: 20px;
+   font-weight: bold;
+   font-family: "Menlo", monospace;
+   text-decoration: none;
+ }
+
+ .loggin-btn {
+   margin-left: auto;
+   margin-right: 10px;
+
+ }
+
+ .white-img {
+   filter: brightness(0) invert(1);
+   height: auto;
+    width: 40px;
+ }
+
+ .toolbar-title {
+   display: flex;
+   align-items: center;
+   text-decoration: none;
+ }
+
+ .tools {
+   display: flex;
+   align-items: center;
+ }
+
+ .logo-text {
+   color: white;
+   margin-left: 8px;
+   text-decoration: none;
+   font-family: "Liberation Mono", monospace;
+ }
+</style>
