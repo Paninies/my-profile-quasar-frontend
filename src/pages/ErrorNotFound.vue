@@ -1,22 +1,20 @@
 <template>
-  <div class="fullscreen bg-blue text-white text-center q-pa-md flex flex-center">
-    <div>
-      <div style="font-size: 30vh">
-        404
-      </div>
-
-      <div class="text-h2" style="opacity:.4">
-        Oops. Nothing here...
-      </div>
-
+  <div class="fullscreen bg-black text-white text-center q-pa-md flex flex-center">
+    <div class="q-pa-lg">
+      <h1 class="text-h3">404 - Page Not Found</h1>
+      <p class="text-subtitle1">
+        Oops! The page you are looking for does not exist.
+      </p>
+      <q-img
+        src="../images/gifs/computer-cat.gif"
+        alt="Error 404"
+        class="error-image"
+      />
       <q-btn
-        class="q-mt-xl"
-        color="white"
-        text-color="blue"
-        unelevated
         to="/"
-        label="Go Home"
-        no-caps
+
+        label="Go Back to Homepage"
+        class="q-mt-lg bg-grey-8"
       />
     </div>
   </div>
