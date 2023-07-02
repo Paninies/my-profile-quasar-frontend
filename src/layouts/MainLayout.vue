@@ -1,15 +1,16 @@
 <template>
   <q-layout view="lHh lpr lFf" uhyhjuycfgv>
 
+    <div class="footer-header-text">
     <q-header elevated class="bg-blue-grey-10  header-text" height-hint="98">
-      <router-link to="/" >
+      <router-link to="/" style="text-decoration: none">
           <q-toolbar>
             <q-toolbar-title class="toolbar-title">
               <q-avatar>
                 <img class="white-img" src="../images/panini-logo.png" alt="logo"/>
               </q-avatar>
               <div class="logo-text">
-                Panini by Illia
+           Panini by Illia
               </div>
             </q-toolbar-title>
           </q-toolbar>
@@ -81,6 +82,18 @@
 
     </q-header>
 
+    <q-footer elevated class="footer bg-blue-grey-10 text-white q-pa-md">
+      <div class="row justify-center">
+
+        <div v-for="link in linksRef" class="col-4">
+          <div class="text-center">
+            <a :href="link.href" :target="link.target" style="text-decoration: none" class="text-white"> {{ link.name }}</a>
+          </div>
+        </div>
+      </div>
+    </q-footer>
+    </div>
+
     <q-page-container>
       <router-view />
     </q-page-container>
@@ -92,6 +105,7 @@
 import { defineComponent, ref } from 'vue';
 import MyButton from 'src/components/MyButton.vue';
 import { CustomButton } from 'src/models/CustomButton';
+import  { Link } from "src/models/models";
 
 function getRandomNumber(): number {
   return Math.floor(10001 * Math.random());
@@ -108,6 +122,20 @@ export default defineComponent({
 
   setup () {
     const color = 'blue-grey-7';
+    const links: Link[] = [
+      {
+        href: "https://www.linkedin.com/in/illia-ponomarov-6a5457215/",
+        target: "_blank",
+        name: "LinkedIn"
+      },
+
+      {
+        href: "https://github.com/IlliaPonomarov",
+        target: "_blank",
+        name: "GitHub"
+      }
+    ]
+
     const logginButtons: CustomButton[] = [
       {
         id: getRandomNumber(),
@@ -126,7 +154,9 @@ export default defineComponent({
     ];
 
     const logButtons = ref<CustomButton[]>(logginButtons);
-    return { logButtons };
+    const linksRef = ref<Link[]>(links);
+
+    return { logButtons, linksRef };
   }
 
 });
@@ -136,6 +166,14 @@ export default defineComponent({
  .borderless-button {
    border: none !important;
    background: none !important;
+ }
+
+ .footer-header-text {
+   color: white;
+   font-size: 20px;
+   font-weight: bold;
+   font-family: "Menlo", monospace;
+   text-decoration: none;
  }
 
  .header-text {
@@ -169,6 +207,9 @@ export default defineComponent({
    align-items: center;
  }
 
+ .footer {
+   margin-top: auto;
+ }
  .logo-text {
    color: white;
    margin-left: 8px;
