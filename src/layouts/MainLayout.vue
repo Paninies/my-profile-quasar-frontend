@@ -71,7 +71,7 @@
           <q-route-tab to="/" label="Page Three" />
         </q-tabs>
 
-        <div class="loggin-btn">
+        <div class="loggin-btn q-gutter-sm">
           <my-button
             v-for="button in logButtons"
             :button="button"

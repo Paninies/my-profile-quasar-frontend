@@ -21,16 +21,33 @@
           <h2>About me</h2>
           <p class="text-center about-me-text">
             I am a software developer with a passion for creating and developing web applications.
-            I have a strong background in JavaScript, TypeScript, Vue.js, and Node.js.
+            I have a strong background in Java, Spring Boot, and Computer Science.
             I am a quick learner and a team player who is always looking to improve my skills.
           </p>
         </div>
 
-        <q-separator class="bg-white" />
+        <q-separator class="bg-white" inset />
+        <div class="my-articles">
+          <h2>My articles</h2>
+          <p class="text-center about-me-text">
+            I have written a few articles on Medium about my experience with programming.
+          </p>
 
+
+          <div class="row">
+              <article-card class="col" :article="article" v-for="article in articles"
+              :key="article.id"
+              />
+          </div>
+
+        </div>
+
+        <br/>
+        <q-separator class="bg-white" inset />
+        <br/>
         <div class="my-experience">
           <h2>Experience</h2>
-          <p>
+          <p class="text-center about-me-text">
             I've been working as a java software developer for over 1 years in Telco industry.
           </p>
         </div>
@@ -81,10 +98,51 @@
   </q-page>
 </template>
 
-<script>
-export default {
-  name: "IntroductionPage"
-}
+<script lang="ts">
+import ArticleCard from "components/ArticleCard.vue";
+import { Article, TopicEnum } from "src/models/article-models";
+import { getRandomId } from "src/models/CustomButton";
+import { ref, defineComponent } from "vue";
+
+export default defineComponent({
+  name: "IntroductionPage",
+  components: {
+    ArticleCard,
+  },
+
+  setup() {
+    const articles: Article[] = [
+      {
+        id: getRandomId(),
+        title: "Java",
+        author: "Illia Ponomarov",
+        description: "Here you can find articles about Java",
+        topics: [TopicEnum.JAVA],
+        created_at: new Date("2021-01-01"),
+        updated_at: new Date("2021-01-01"),
+        image: "src/images/JavaImg.png",
+      },
+
+      {
+        id: getRandomId(),
+        title: "Spring Boot",
+        author: "Illia Ponomarov",
+        description: "Here you can find articles about Spring Boot",
+        topics: [TopicEnum.SPRING_BOOT],
+        created_at: new Date("2021-01-01"),
+        updated_at: new Date("2021-01-01"),
+        image: "src/images/default-photo.png",
+      }
+
+    ];
+
+    const articlesRef = ref<Article[]>(articles);
+
+    return {
+      articles, articlesRef,
+    };
+  },
+});
 </script>
 
 <style scoped>
@@ -102,6 +160,13 @@ export default {
  }
 
  .skill-list {
+   font-family: 'Courier New', monospace;
+   padding: 20px;
+   font-size: 20px;
+   line-height: 1.5;
+   color: white;
+ }
+ .my-articles {
    font-family: 'Courier New', monospace;
    padding: 20px;
    font-size: 20px;
