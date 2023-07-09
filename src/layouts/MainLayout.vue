@@ -51,18 +51,9 @@
             >
               <q-list>
                 <q-item clickable>
-                  <q-item-section>Item 1</q-item-section>
+                  <q-item-section>Article Editor</q-item-section>
                 </q-item>
-                <q-item clickable>
-                  <q-item-section>Item 2</q-item-section>
-                </q-item>
-                <q-item clickable>
-                  <q-item-section>Item 3</q-item-section>
-                </q-item>
-                <q-separator/>
-                <q-item clickable>
-                  <q-item-section>Item 4</q-item-section>
-                </q-item>
+
               </q-list>
             </q-menu>
           </q-btn>
