@@ -13,6 +13,13 @@ const routes: RouteRecordRaw[] = [
     children: [{ path: '', component: () => import('pages/CVPage.vue') }]
   },
 
+
+  {
+    path: "/article-editor",
+    component: () => import('layouts/MainLayout.vue'),
+    children: [{ path: '', component: () => import('pages/ArticleEditor.vue')}]
+  },
+
   // Always leave this as last one,
   // but you can also remove it
   {

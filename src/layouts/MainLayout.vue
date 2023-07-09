@@ -50,7 +50,7 @@
               transition-hide="rotate"
             >
               <q-list>
-                <q-item clickable>
+                <q-item clickable to="/article-editor">
                   <q-item-section>Article Editor</q-item-section>
                 </q-item>
 
