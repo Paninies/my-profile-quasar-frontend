@@ -19,7 +19,7 @@
       <div class="tools">
         <q-tabs align="left">
           <q-route-tab to="/" label="Intro" />
-          <q-route-tab to="/" label="CV" />
+          <q-route-tab to="/cv" label="CV" />
 
           <div class="no-border-radius">
           <q-btn text-color="white" label="Articles" style="margin: 0 5px">

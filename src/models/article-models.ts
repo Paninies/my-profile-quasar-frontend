@@ -55,4 +55,5 @@ export enum TopicEnum {
   REST,
   SOAP,
   MICROSERVICES,
+  AWS,
 }

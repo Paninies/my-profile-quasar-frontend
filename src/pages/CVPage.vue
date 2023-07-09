@@ -1,37 +1,15 @@
 <template>
   <q-page class="row-lg justify-center bg-black" style="height: 100vh;">
     <q-scroll-area style="height: 100%;">
-      <div class="q-pa-md q-gutter-lg-md bg-black" style="width: 100%; height: 100%">
-        <div class="row justify-between">
-          <q-parallax src="src/images/programminng-intro.jpg">
-            <h1 class="text-white text-h3">Introduction</h1>
-          </q-parallax>
-        </div>
-      </div>
 
       <div class="text-white text-h3 text-center">
-        <div class="intro-text bg-black text-white text-center">
-          <h2>Whats up, I'm Illia</h2>
-        </div>
 
+        <embed :src="pdfUrl" type="application/pdf" width="30%" height="1000px"/>
         <div class="main">
           <h2>About me</h2>
           <p class="text-center about-me-text">
             Highly motivated and skilled <strong>Java Software Developer</strong> with a background in <b>EAI architecture</b>, REST and SOAP services, event-driven systems, integration development, and Agile methodologies. Seeking a challenging role where I can leverage my technical expertise and Agile experience to contribute to the success of innovative projects.
           </p>
-        </div>
-
-        <q-separator class="bg-white" spaced inset />
-
-        <div class="my-articles">
-          <h2>My articles</h2>
-          <p class="text-center about-me-text">
-            I have written a few articles on various topics related to programming and software development. Feel free to explore some of my featured articles below.
-          </p>
-
-          <div class="row">
-            <article-card class="col" :article="article" v-for="article in articles" :key="article.id" />
-          </div>
         </div>
 
         <br />
@@ -41,8 +19,8 @@
         <div class="my-experience">
           <h2>Experience</h2>
           <div class="text-center about-me-text">
-          <h4 class="q-ml-md">Java Application Developer at Atos </h4>
-          <h5>2023 - current</h5>
+            <h4 class="q-ml-md">Java Application Developer at Atos </h4>
+            <h5>2023 - current</h5>
             <ul class="skill-list text-left" >
               <li>Collaborated within a dynamic team to implement EAI Architecture, enabling seamless integration of disparate systems and facilitating efficient data flow.</li>
               <li>Developed and deployed REST and SOAP services on the Enterprise Service Bus, ensuring smooth communication between applications and enabling effective data exchange. Implemented comprehensive unit tests for REST and SOAP services, ensuring high code quality and reducing the occurrence of defects.</li>
@@ -89,20 +67,12 @@
 </template>
 
 <script lang="ts">
-import ArticleCard from "components/ArticleCard.vue";
-import { Article, TopicEnum } from "src/models/article-models";
-import { getRandomId } from "src/models/CustomButton";
-import { ref, defineComponent } from "vue";
-import {QScrollArea} from "quasar";
+import { ref } from "vue"
 
-export default defineComponent({
-  name: "IntroductionPage",
-  components: {
-    QScrollArea,
-    ArticleCard,
-  },
+export default {
+  name: "CVPage",
 
-  setup() {
+  setup () {
 
     const skills: Array<Object> = [
       {
@@ -194,59 +164,14 @@ export default defineComponent({
         ],
       },
     ]
-    const articles: Article[] = [
-      {
-        id: getRandomId(),
-        title: "Java",
-        author: "Illia Ponomarov",
-        description: "Here you can find articles about Java",
-        topics: [TopicEnum.JAVA],
-        created_at: new Date("2021-01-01"),
-        updated_at: new Date("2021-01-01"),
-        image: "src/images/JavaImg.png",
-      },
-      {
-        id: getRandomId(),
-        title: "Spring Boot",
-        author: "Illia Ponomarov",
-        description: "Here you can find articles about Spring Boot",
-        topics: [TopicEnum.SPRING_BOOT],
-        created_at: new Date("2021-01-01"),
-        updated_at: new Date("2021-01-01"),
-        image: "src/images/spring-boot.jpg",
-      },
-      {
-        id: getRandomId(),
-        title: "Amazon Web Services",
-        author: "Illia Ponomarov",
-        description: "Here you can find articles about AWS",
-        topics: [TopicEnum.AWS],
-        created_at: new Date("2021-01-01"),
-        updated_at: new Date("2021-01-01"),
-        image: "src/images/AWS.jpg",
-      },
-      {
-        id: getRandomId(),
-        title: "Computer Science",
-        author: "Illia Ponomarov",
-        description: "Here you can find articles about Computer Science",
-        topics: [TopicEnum.COMPUTER_SCIENCE],
-        created_at: new Date("2021-01-01"),
-        updated_at: new Date("2021-01-01"),
-        image: "src/images/default-photo.png",
-      },
-    ];
-
-    const articlesRef = ref<Article[]>(articles);
-    const skillsRef = ref<Object[]>(skills);
-
+    const skillsRef = ref(skills)
+    const pdfUrl = "src/images/Illia_Ponomarov_Junior_Java_Developer_CV.pdf"
     return {
-      articles,
-      articlesRef,
       skillsRef,
-    };
-  },
-});
+      pdfUrl
+    }
+  }
+}
 </script>
 
 <style scoped>
@@ -257,6 +182,7 @@ export default defineComponent({
 
 .main {
   font-family: 'Courier New', monospace;
+  padding: 20px;
   padding: 20px;
   font-size: 20px;
   line-height: 1.5;

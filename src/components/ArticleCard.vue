@@ -4,7 +4,7 @@
 
       <img :src="article.image" />
 
-      <q-card-section class="card-text-section text-black bg-grey-4">
+      <q-card-section class="card-text-section text-black bg-white">
         <div class="text-bold"> <p>{{ article.title }}</p></div>
         <my-button :button="articleButtonRef" />
       </q-card-section>
@@ -70,7 +70,7 @@ export default defineComponent( {
     const articleButton: CustomButton = {
       id: getRandomId(),
       label: "Read more",
-      class: "text-white bg-grey-8 q-ma-md text-bold whote-shadow",
+      class: "text-white bg-grey-9 q-ma-md text-bold whote-shadow",
       name: "readmore",
       route: "/article/" + props.article.id
     };
